@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model events {
+  id                   String   @id @default(uuid())
+  payload              Json
+  alert_id             String? @db.Char(36)
+  task_instance_id     String? @db.Char(255)
+  visit_id             String? @db.Char(36)
+  caregiver_id         String? @db.Char(36)
+  payload_as_text      String? @db.Text
+  rejected_event_id    String? @db.Char(255)
+  observation_event_id String? @db.Char(255)
+  timestamp            String? @db.VarChar(50)
+  event_type           String? @db.VarChar(50)
+  care_recipient_id    String? @db.Char(36)
+}
